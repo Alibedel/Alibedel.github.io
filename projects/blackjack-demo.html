@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackJack Universe — Live Demo</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0f1c;
+    --felt: #0e1b2e;
+    --border: rgba(148, 163, 184, 0.16);
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #34d399;
+    --accent-2: #22d3ee;
+    --red: #f87171;
+    --gradient: linear-gradient(135deg, #34d399, #22d3ee);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: radial-gradient(700px 400px at 50% -10%, rgba(34,211,238,0.08), transparent 60%), var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 18px 12px;
+    min-height: 100vh;
+  }
+  .table { width: 100%; max-width: 760px; }
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .topbar h1 {
+    font-family: "Sora", sans-serif;
+    font-size: 18px;
+    margin: 0;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .bank { font-size: 14px; color: var(--muted); }
+  .bank strong { color: var(--accent); font-size: 16px; }
+  .hand-zone {
+    background: var(--felt);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    min-height: 130px;
+  }
+  .hand-zone .label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .hand-zone .label .total { color: var(--accent-2); font-weight: 700; }
+  .cards { display: flex; flex-wrap: wrap; gap: 8px; }
+  .card {
+    width: 58px;
+    height: 84px;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #0f172a;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 6px 7px;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(2, 6, 23, 0.5);
+    animation: deal 0.35s ease;
+  }
+  .card.red { color: #dc2626; }
+  .card.back {
+    background: repeating-linear-gradient(45deg, #16264a, #16264a 6px, #121e38 6px, #121e38 12px);
+    border: 1px solid var(--border);
+  }
+  .card .suit { font-size: 20px; text-align: right; }
+  @keyframes deal {
+    from { transform: translateY(-14px) scale(0.9); opacity: 0; }
+    to { transform: none; opacity: 1; }
+  }
+  .msg {
+    text-align: center;
+    min-height: 26px;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 4px 0 12px;
+  }
+  .msg.win { color: var(--accent); }
+  .msg.lose { color: var(--red); }
+  .msg.push { color: var(--accent-2); }
+  .controls { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  button {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 11px 28px;
+    border-radius: 999px;
+    border: 0;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  }
+  button:disabled { opacity: 0.35; cursor: not-allowed; }
+  .primary { background: var(--gradient); color: #04111f; }
+  .primary:not(:disabled):hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(52, 211, 153, 0.35); }
+  .ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .ghost:not(:disabled):hover { border-color: var(--accent); transform: translateY(-2px); }
+  .hint { text-align: center; color: var(--muted); font-size: 12px; margin-top: 12px; }
+  @media (prefers-reduced-motion: reduce) { .card { animation: none; } }
+</style>
+</head>
+<body>
+<div class="table">
+  <div class="topbar">
+    <h1>♠ BlackJack Universe</h1>
+    <div class="bank">Bank: <strong id="bank">$100</strong> &nbsp;•&nbsp; Bet: $10</div>
+  </div>
+
+  <div class="hand-zone">
+    <div class="label"><span>Dealer</span><span class="total" id="dealer-total"></span></div>
+    <div class="cards" id="dealer-cards"></div>
+  </div>
+
+  <div class="hand-zone">
+    <div class="label"><span>You</span><span class="total" id="player-total"></span></div>
+    <div class="cards" id="player-cards"></div>
+  </div>
+
+  <div class="msg" id="msg">Press Deal to start.</div>
+
+  <div class="controls">
+    <button class="primary" id="deal">Deal</button>
+    <button class="ghost" id="hit" disabled>Hit</button>
+    <button class="ghost" id="stand" disabled>Stand</button>
+  </div>
+
+  <p class="hint">Dealer stands on 17 · Blackjack pays 3:2 · Bank resets if you go broke</p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var SUITS = [
+    { s: "♠", red: false }, { s: "♥", red: true },
+    { s: "♦", red: true }, { s: "♣", red: false }
+  ];
+  var RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+  var BET = 10;
+
+  var deck = [], player = [], dealer = [], bank = 100, inRound = false;
+
+  var el = {
+    bank: document.getElementById("bank"),
+    dealerCards: document.getElementById("dealer-cards"),
+    playerCards: document.getElementById("player-cards"),
+    dealerTotal: document.getElementById("dealer-total"),
+    playerTotal: document.getElementById("player-total"),
+    msg: document.getElementById("msg"),
+    deal: document.getElementById("deal"),
+    hit: document.getElementById("hit"),
+    stand: document.getElementById("stand")
+  };
+
+  function newDeck() {
+    var d = [];
+    SUITS.forEach(function (suit) {
+      RANKS.forEach(function (rank) {
+        d.push({ rank: rank, suit: suit.s, red: suit.red });
+      });
+    });
+    // Fisher–Yates shuffle
+    for (var i = d.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = d[i]; d[i] = d[j]; d[j] = t;
+    }
+    return d;
+  }
+
+  function handValue(hand) {
+    var total = 0, aces = 0;
+    hand.forEach(function (c) {
+      if (c.rank === "A") { total += 11; aces++; }
+      else if (["J", "Q", "K"].indexOf(c.rank) >= 0) total += 10;
+      else total += parseInt(c.rank, 10);
+    });
+    while (total > 21 && aces > 0) { total -= 10; aces--; }
+    return total;
+  }
+
+  function cardHTML(c, hidden) {
+    if (hidden) return '<div class="card back"></div>';
+    return '<div class="card' + (c.red ? " red" : "") + '"><span>' + c.rank + '</span><span class="suit">' + c.suit + '</span></div>';
+  }
+
+  function render(hideHole) {
+    el.dealerCards.innerHTML = dealer.map(function (c, i) {
+      return cardHTML(c, hideHole && i === 1);
+    }).join("");
+    el.playerCards.innerHTML = player.map(function (c) { return cardHTML(c, false); }).join("");
+    el.playerTotal.textContent = player.length ? handValue(player) : "";
+    el.dealerTotal.textContent = dealer.length ? (hideHole ? handValue([dealer[0]]) + " + ?" : handValue(dealer)) : "";
+    el.bank.textContent = "$" + bank;
+  }
+
+  function setMsg(text, cls) {
+    el.msg.textContent = text;
+    el.msg.className = "msg" + (cls ? " " + cls : "");
+  }
+
+  function setButtons(deal, hit, stand) {
+    el.deal.disabled = !deal;
+    el.hit.disabled = !hit;
+    el.stand.disabled = !stand;
+  }
+
+  function startRound() {
+    if (bank < BET) { bank = 100; }
+    bank -= BET;
+    deck = newDeck();
+    player = [deck.pop(), deck.pop()];
+    dealer = [deck.pop(), deck.pop()];
+    inRound = true;
+    setMsg("Hit or stand?");
+    setButtons(false, true, true);
+    render(true);
+
+    if (handValue(player) === 21) {
+      if (handValue(dealer) === 21) endRound("push");
+      else endRound("blackjack");
+    }
+  }
+
+  function endRound(result) {
+    inRound = false;
+    render(false);
+    if (result === "blackjack") { bank += BET + BET * 1.5; setMsg("Blackjack! You win $" + (BET * 1.5).toFixed(0) + " 🎉", "win"); }
+    else if (result === "win") { bank += BET * 2; setMsg("You win $" + BET + "! 🎉", "win"); }
+    else if (result === "push") { bank += BET; setMsg("Push — bet returned.", "push"); }
+    else if (result === "bust") { setMsg("Bust! Dealer wins.", "lose"); }
+    else { setMsg("Dealer wins.", "lose"); }
+    el.bank.textContent = "$" + bank;
+    setButtons(true, false, false);
+  }
+
+  el.deal.addEventListener("click", startRound);
+
+  el.hit.addEventListener("click", function () {
+    if (!inRound) return;
+    player.push(deck.pop());
+    render(true);
+    if (handValue(player) > 21) endRound("bust");
+  });
+
+  el.stand.addEventListener("click", function () {
+    if (!inRound) return;
+    while (handValue(dealer) < 17) dealer.push(deck.pop());
+    var p = handValue(player), d = handValue(dealer);
+    if (d > 21 || p > d) endRound("win");
+    else if (p === d) endRound("push");
+    else endRound("lose");
+  });
+
+  render(false);
+})();
+</script>
+</body>
+</html>
