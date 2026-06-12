@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="ice" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D8ECF8"/>
+      <stop offset="1" stop-color="#98C0EF"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9ecbff" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#5e8fdd" stop-opacity=".18"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".32" r=".75">
+      <stop offset="0" stop-color="#5e8fdd" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#5e8fdd" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <rect x="1" y="1" width="62" height="62" rx="16" fill="#0A1426"/>
+  <rect x="1" y="1" width="62" height="62" rx="16" fill="url(#glow)"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="15.5" fill="none" stroke="url(#edge)" stroke-width="1"/>
+
+  <!-- AH monogram: two mirrored strokes forming an A, crossbar bridging like an H -->
+  <path d="M30.2 15.5 L17 48.5 H23.4 L33.4 22.4 Z" fill="url(#ice)"/>
+  <path d="M33.8 15.5 L47 48.5 H40.6 L30.6 22.4 Z" fill="url(#ice)" opacity=".62"/>
+  <rect x="25.6" y="35.4" width="12.8" height="4.6" rx="2.3" fill="url(#ice)" opacity=".88"/>
+
+  <!-- glisten spark -->
+  <path d="M45.5 12.5 l1.1 2.9 2.9 1.1 -2.9 1.1 -1.1 2.9 -1.1 -2.9 -2.9 -1.1 2.9 -1.1 Z" fill="#D8ECF8" opacity=".9"/>
+</svg>
