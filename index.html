@@ -1,427 +1,1077 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-5BB8W2X');</script>
-  <!-- End Google Tag Manager -->
-  <link rel="icon" type="image/png" href="/favicon.png"/>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>Ali Hassan — Web Developer &amp; Software Engineer | Websites Built &amp; Maintained</title>
-  <meta name="description" content="Ali Hassan is a Detroit-based web developer and software engineer. I design, build, and maintain fast, modern websites and web apps for businesses — from custom dashboards to client-facing sites.">
-  <meta name="keywords" content="web developer, website builder, website maintenance, software engineer, Detroit, Django, Python, freelance developer, Ali Hassan">
-  <meta name="author" content="Ali Hassan">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Ali Hassan — Web Developer &amp; Software Engineer">
-  <meta property="og:description" content="I design, build, and maintain fast, modern websites and web apps for businesses.">
-  <meta property="og:url" content="https://alibedel.github.io/">
-  <meta property="og:image" content="https://alibedel.github.io/assets/img/me.jpg">
-  <link rel="canonical" href="https://alibedel.github.io/">
-
-  <!-- Google Fonts -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ali Hassan — Web Developer &amp; Software Engineer</title>
+  <meta name="description" content="Ali Hassan is a Detroit-based web developer and software engineer. I design, build, and maintain fast, modern websites and web apps for businesses.">
+  <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    @property --sweep { syntax:'<angle>'; initial-value:0deg; inherits:false; }
+    :root{
+      --bg:#05070d;
+      --bg2:#080b14;
+      --ink:#eaf1fb;
+      --muted:#8a97ad;
+      --muted2:#5c6a82;
+      --line:rgba(160,190,255,.10);
+      --glass:rgba(13,19,33,.78);
+      --glass-brd:rgba(160,190,255,.14);
+      --accent:#9ecbff;
+      --accent2:#5e8fdd;
+      --brand:#663AF3;
+      --radius:12px;
+      --radius-ui:8px;
+      --star:#cfe2ff;
+      --grad-text:linear-gradient(180deg,#D8ECF8 0%,#98C0EF 100%);
+    }
+    body.light{
+      --bg:#f4f6fb; --bg2:#eaeef7; --ink:#101a2e; --muted:#4d5b74; --muted2:#7b8aa3;
+      --line:rgba(30,60,120,.13); --glass:rgba(255,255,255,.8); --glass-brd:rgba(30,60,120,.14);
+      --accent:#2f5fb8; --accent2:#3e63dd; --star:#9db8e6;
+      --grad-text:linear-gradient(180deg,#1a2845 0%,#3e63b8 100%);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg); color:var(--ink);
+      font-family:'Inter',system-ui,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+      transition:background .4s, color .4s;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1140px;margin:0 auto;padding:0 24px}
+    .grad-text{background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-  <!-- Vendor CSS -->
-  <link href="assets/vendor/bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    /* ===== section header (AuthKit pattern) ===== */
+    .section-header{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;padding:0 24px;margin-bottom:56px}
+    .badge-lines{display:flex;align-items:center;gap:16px;width:100%;max-width:560px}
+    .badge-lines::before,.badge-lines::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(160,190,255,.35))}
+    .badge-lines::after{transform:scaleX(-1)}
+    .badge{
+      padding:6px 16px;border-radius:999px;font-size:13px;
+      border:1px solid var(--line);background:rgba(150,180,230,.06);
+      white-space:nowrap;
+    }
+    .section-title{font-family:'Plus Jakarta Sans',Inter,sans-serif;font-size:clamp(28px,4.4vw,40px);font-weight:700;letter-spacing:-.025em;line-height:1.12}
+    .section-title span{display:block}
+    .section-desc{color:var(--muted);font-size:15.5px;line-height:1.65;max-width:480px}
 
-  <!-- Main CSS -->
-  <link href="assets/css/style.css" rel="stylesheet">
+    /* ===== glowing button ===== */
+    .gbtn{
+      position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      height:38px;padding:0 18px;border-radius:999px;
+      font-size:13.5px;font-weight:500;color:var(--ink);cursor:pointer;
+      background:rgba(150,180,230,.08);
+      border:1px solid rgba(160,190,255,.22);
+      box-shadow:0 0 18px rgba(120,170,255,.12), inset 0 1px 0 rgba(255,255,255,.08);
+      transition:.25s;
+    }
+    .gbtn:hover{border-color:rgba(160,190,255,.45);box-shadow:0 0 26px rgba(120,170,255,.25), inset 0 1px 0 rgba(255,255,255,.1)}
+    .gbtn.icon-only{width:38px;padding:0}
+
+    /* ===== outline box with corner dots ===== */
+    .obox{position:relative;padding:18px 30px}
+    .obox::before,.obox::after{content:"";position:absolute;left:-100vw;right:-100vw;height:1px;background:rgba(160,190,255,.08)}
+    .obox::before{top:0}
+    .obox::after{bottom:0}
+    .obox i{position:absolute;width:5px;height:5px;background:#9ecbff;opacity:.8;border-radius:1px;z-index:2}
+    .obox i:nth-of-type(1){top:-2px;left:-2px}
+    .obox i:nth-of-type(2){top:-2px;right:-2px}
+    .obox i:nth-of-type(3){bottom:-2px;left:-2px}
+    .obox i:nth-of-type(4){bottom:-2px;right:-2px}
+
+    /* ===================== HERO ===================== */
+    .hero{
+      position:relative;min-height:100vh;
+      display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+      text-align:center;padding:110px 24px 60px;overflow:hidden;
+      background:var(--bg);
+    }
+    #star-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
+    /* triple spotlights */
+    .spotlights{position:absolute;top:0;left:50%;width:0;height:100%;pointer-events:none}
+    .spot{
+      position:absolute;top:-10%;left:0;width:520px;height:90%;
+      transform:translateX(-50%) rotate(var(--rotate,0deg)) scale(var(--scale,1));
+      transform-origin:50% 0%;
+      background:conic-gradient(from 180deg at 50% 0%, transparent 42%, rgba(158,203,255,.10) 50%, transparent 58%);
+      filter:blur(12px);
+      animation:sway var(--duration,6s) ease-in-out infinite alternate;
+    }
+    @keyframes sway{
+      from{transform:translateX(-50%) rotate(calc(var(--rotate) - 3deg)) scale(var(--scale))}
+      to{transform:translateX(-50%) rotate(calc(var(--rotate) + 3deg)) scale(var(--scale))}
+    }
+    /* grid lines */
+    .hero-lines{position:absolute;inset:0;pointer-events:none}
+    .hline,.vline{position:absolute;background:rgba(140,170,230,.07)}
+    .hline{left:0;right:0;height:1px}
+    .vline{top:0;bottom:0;width:1px}
+    .cross{position:absolute;width:30px;height:30px;pointer-events:none;opacity:.4;z-index:1}
+    .cross::before,.cross::after{content:"";position:absolute;left:50%;top:50%;width:100%;height:1px;background:rgba(160,190,255,.45)}
+    .cross::before{transform:translate(-50%,-50%) rotate(45deg)}
+    .cross::after{transform:translate(-50%,-50%) rotate(-45deg)}
+
+    .hero-topbar{
+      position:absolute;top:0;left:0;right:0;z-index:10;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:20px 32px;
+    }
+    .hero-topbar .brand{font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--muted)}
+    .hero-topbar .mark{
+      position:absolute;left:50%;transform:translateX(-50%);
+      width:34px;height:34px;border-radius:10px;
+      background:url('assets/img/logo.svg') center/cover;
+      border:1px solid rgba(190,220,255,.4);
+      box-shadow:0 0 22px rgba(150,195,255,.55), 0 0 60px rgba(120,170,255,.35);
+    }
+    /* lamp glow: bright source under the mark that the beams emanate from */
+    .hero-topbar .mark::after{
+      content:"";position:absolute;left:50%;top:100%;transform:translateX(-50%);
+      width:160px;height:60px;
+      background:radial-gradient(ellipse 50% 100% at 50% 0%, rgba(190,220,255,.45), transparent 70%);
+      filter:blur(6px);pointer-events:none;
+    }
+    .lamp-halo{
+      position:absolute;top:10px;left:50%;transform:translateX(-50%);
+      width:340px;height:200px;pointer-events:none;z-index:1;
+      background:radial-gradient(ellipse 45% 55% at 50% 12%, rgba(170,205,255,.30), transparent 70%);
+      filter:blur(10px);
+      animation:lampPulse 5s ease-in-out infinite alternate;
+    }
+    @keyframes lampPulse{from{opacity:.75}to{opacity:1}}
+    .hero-topbar .right{display:flex;gap:10px;align-items:center}
+
+    .introducing{margin:34px 0 10px;display:flex;align-items:center;gap:16px;width:min(480px,80vw)}
+    .introducing::before,.introducing::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(160,190,255,.35))}
+    .introducing::after{transform:scaleX(-1)}
+    .introducing .badge{animation:fadeDown .9s ease both}
+
+    .hero-title{
+      position:relative;
+      font-family:'Plus Jakarta Sans',Inter,sans-serif;
+      font-size:clamp(58px,10.5vw,112px);
+      font-weight:700;letter-spacing:-.035em;line-height:1;
+      background:linear-gradient(180deg,#fff 15%,#b9d6ff 55%,#6f9fe0 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      text-shadow:0 0 90px rgba(120,170,255,.28);
+      animation:fadeDown .9s .12s ease both;
+    }
+    body.light .hero-title{background:linear-gradient(180deg,#16233f 20%,#2f5fb8 70%,#4d7fd6 100%);-webkit-background-clip:text;background-clip:text;text-shadow:none}
+    /* glint sweep across the name (logo shimmer) */
+    .hero-title::after{
+      content:attr(data-text);
+      position:absolute;inset:0;
+      background:linear-gradient(110deg,transparent 42%,rgba(255,255,255,.95) 50%,transparent 58%);
+      background-size:280% 100%;
+      background-position:120% 0;
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      animation:glint 7s ease-in-out infinite;
+      animation-delay:1.6s;
+      pointer-events:none;
+    }
+    @keyframes glint{
+      0%{background-position:120% 0}
+      22%{background-position:-60% 0}
+      100%{background-position:-60% 0}
+    }
+    .hero-headline{animation:fadeDown .9s .25s ease both}
+    .hero-headline h2{font-size:clamp(16px,2.2vw,21px);font-weight:400;line-height:1.55}
+    @keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+    @keyframes riseIn{from{opacity:0;transform:translateY(70px)}to{opacity:1;transform:none}}
+
+    /* ===== card stage (3D) ===== */
+    .card-stage{
+      position:relative;width:100%;max-width:1060px;height:470px;
+      margin:46px auto 0;perspective:1300px;
+      animation:riseIn 1s .4s ease both;
+    }
+    .card-slot{position:absolute;top:0;left:50%;transition:transform .7s cubic-bezier(.4,.1,.2,1), opacity .7s, z-index 0s .35s}
+    .card-slot[data-pos="center"]{transform:translateX(-50%);z-index:3;opacity:1}
+    .card-slot[data-pos="left"]{transform:translateX(-146%) translateZ(-60px) rotateY(-10deg);z-index:1;opacity:.85;cursor:pointer}
+    .card-slot[data-pos="right"]{transform:translateX(46%) translateZ(-60px) rotateY(10deg);z-index:1;opacity:.85;cursor:pointer}
+    .card-slot[data-pos="left"] .authcard,.card-slot[data-pos="right"] .authcard{pointer-events:none}
+    .floaty{animation:floaty var(--fd,7s) ease-in-out infinite alternate}
+    @keyframes floaty{from{transform:translate(0,0)}to{transform:translate(var(--fx,3px),var(--fy,6px))}}
+
+    .authcard{
+      position:relative;width:350px;padding:28px 26px 22px;
+      background:var(--glass);
+      border:1px solid var(--glass-brd);
+      border-radius:16px;
+      backdrop-filter:blur(14px);
+      box-shadow:0 30px 80px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.06);
+      text-align:center;
+    }
+    body.light .authcard{box-shadow:0 30px 80px rgba(40,70,140,.18), inset 0 1px 0 rgba(255,255,255,.6)}
+    /* rotating glow sweep on border */
+    .authcard::after{
+      content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;
+      background:conic-gradient(from var(--sweep),transparent 0deg,transparent 300deg,rgba(190,220,255,.9) 330deg,transparent 360deg);
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;mask-composite:exclude;
+      animation:sweepAnim 9s linear infinite;
+      animation-delay:var(--sd,0s);
+      pointer-events:none;
+    }
+    @keyframes sweepAnim{to{--sweep:360deg}}
+    .logo-dot{
+      width:42px;height:42px;border-radius:12px;margin:0 auto 12px;
+      background:url('assets/img/logo.svg') center/cover;
+      border:1px solid var(--glass-brd);
+      box-shadow:0 0 24px rgba(120,170,255,.25);
+    }
+    .authcard h3{font-size:15px;font-weight:600;margin-bottom:16px}
+    .authcard .desc{font-size:12.5px;color:var(--muted);margin:-8px 0 14px;line-height:1.55}
+    .field-label{display:block;text-align:left;font-size:12px;font-weight:500;margin:0 0 5px 2px}
+    .field{
+      width:100%;padding:11px 14px;border-radius:var(--radius-ui);
+      background:rgba(8,12,22,.8);border:1px solid var(--line);
+      color:var(--ink);font-size:13px;text-align:left;margin-bottom:12px;
+      display:block;font-family:inherit;outline:none;
+      transition:border-color .2s, box-shadow .2s;
+    }
+    body.light .field{background:rgba(255,255,255,.85)}
+    .field::placeholder{color:var(--muted2)}
+    .field:focus{border-color:var(--brand);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 22%,transparent)}
+    .btn{
+      display:flex;align-items:center;justify-content:center;gap:9px;
+      width:100%;padding:11px 14px;border-radius:var(--radius-ui);
+      font-size:13px;font-weight:500;cursor:pointer;transition:.2s;
+      border:1px solid var(--line);
+      background:rgba(150,180,230,.08);color:var(--ink);
+      margin-bottom:10px;font-family:inherit;
+    }
+    .btn:hover{background:rgba(150,180,230,.15);border-color:rgba(160,190,255,.3)}
+    .btn.primary{
+      background:var(--brand);color:#fff;border:none;font-weight:600;
+      box-shadow:0 0 28px color-mix(in srgb,var(--brand) 35%,transparent);
+    }
+    .btn.primary:hover{filter:brightness(1.12)}
+    .btn svg{width:15px;height:15px;flex-shrink:0}
+    .or-row{display:flex;align-items:center;gap:12px;color:var(--muted2);font-size:11px;letter-spacing:.1em;margin:14px 0}
+    .or-row::before,.or-row::after{content:"";flex:1;height:1px;background:var(--line)}
+    .authcard .foot{font-size:12px;color:var(--muted2);margin-top:12px}
+    .authcard .foot a{color:var(--accent)}
+    .code-row{display:flex;gap:8px;justify-content:center;margin-bottom:14px}
+    .code-box{
+      width:44px;height:48px;border-radius:var(--radius-ui);
+      background:rgba(8,12,22,.8);border:1px solid var(--line);
+      display:flex;align-items:center;justify-content:center;
+      font-size:18px;font-weight:600;transition:border-color .2s;
+    }
+    body.light .code-box{background:rgba(255,255,255,.85)}
+    .code-box.fill{border-color:var(--brand);box-shadow:0 0 12px color-mix(in srgb,var(--brand) 30%,transparent)}
+
+    /* ===== light switch ===== */
+    .light-switch-wrap{margin-top:44px;display:flex;flex-direction:column;align-items:center;gap:12px;animation:riseIn 1s .6s ease both}
+    .light-switch{
+      position:relative;width:96px;height:44px;border-radius:999px;cursor:pointer;
+      background:rgba(150,180,230,.07);border:1px solid var(--line);
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 13px;color:var(--muted);
+      transition:.25s;
+    }
+    .light-switch:hover{border-color:rgba(160,190,255,.3)}
+    .light-switch .thumb{
+      position:absolute;top:4px;left:4px;width:36px;height:36px;border-radius:50%;
+      background:rgba(150,180,230,.18);border:1px solid rgba(160,190,255,.25);
+      transition:transform .3s cubic-bezier(.4,.1,.2,1);
+      box-shadow:0 0 14px rgba(140,180,255,.25);
+    }
+    body.light .light-switch .thumb{transform:translateX(52px)}
+    .light-switch svg{width:18px;height:18px;z-index:1}
+    .light-caption{font-size:13px;color:var(--muted2)}
+
+    /* ===================== features marquee ===================== */
+    .features-slider{padding:84px 0 10px;overflow:hidden;position:relative}
+    .features-slider::before,.features-slider::after{
+      content:"";position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none;
+    }
+    .features-slider::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+    .features-slider::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+    .features-track{display:flex;width:max-content;animation:marquee 36s linear infinite}
+    .features-slider:hover .features-track{animation-play-state:paused}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+    .feature-item{display:flex;align-items:center}
+    .feature-cell{display:flex;flex-direction:column;align-items:center;gap:12px;width:178px}
+    .feature-cell .fic{
+      width:58px;height:58px;border-radius:15px;
+      background:linear-gradient(180deg,rgba(150,180,230,.14),rgba(150,180,230,.04));
+      border:1px solid var(--glass-brd);
+      display:flex;align-items:center;justify-content:center;color:var(--accent);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+      transition:.3s;
+    }
+    .feature-cell:hover .fic{
+      transform:translateY(-4px);color:var(--ink);
+      border-color:color-mix(in srgb,var(--brand) 55%,transparent);
+      box-shadow:0 0 28px color-mix(in srgb,var(--brand) 35%,transparent);
+    }
+    .feature-cell .fic svg{width:24px;height:24px}
+    .feature-cell span{font-size:12.5px;color:var(--muted);white-space:nowrap}
+    .feature-sep{width:60px;height:1px;margin-top:-26px;background-image:linear-gradient(90deg,rgba(160,190,255,.35) 33%,transparent 0%);background-size:6px 1px}
+
+    /* ===================== sections ===================== */
+    section{padding:96px 0;position:relative}
+    .page-sep{height:1px;background:linear-gradient(90deg,transparent,rgba(160,190,255,.12),transparent)}
+
+    /* about / meta */
+    .about-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:780px;margin:40px auto 0}
+    .tag{padding:8px 16px;border-radius:999px;font-size:13px;color:var(--muted);background:rgba(150,180,230,.06);border:1px solid var(--line);transition:.2s}
+    .tag:hover{color:var(--ink);border-color:color-mix(in srgb,var(--brand) 50%,transparent)}
+
+    /* projects */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .proj{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--bg2);transition:.25s;display:block}
+    .proj:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--brand) 50%,transparent);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+    .proj img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;opacity:.9}
+    .proj .cap{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;font-size:13.5px;font-weight:500}
+    .proj .cap span{color:var(--muted2);font-size:12px;font-weight:400}
+    .proj.cta-card{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;min-height:220px;text-align:center;background:radial-gradient(400px 200px at 50% 0%,rgba(94,143,221,.12),transparent),var(--bg2)}
+    .proj.cta-card b{font-size:15px}
+    .proj.cta-card span{color:var(--muted);font-size:13px;max-width:220px;line-height:1.5}
+
+    /* ===================== customizer (browser frame) ===================== */
+    .customui{position:relative;overflow:hidden;background:radial-gradient(800px 400px at 50% 0%,rgba(94,143,221,.08),transparent),var(--bg)}
+    .browser{
+      position:relative;max-width:1060px;margin:0 auto;border-radius:16px;
+      border:1px solid var(--glass-brd);background:var(--bg2);
+      box-shadow:0 40px 110px rgba(0,0,0,.5);
+      overflow:hidden;
+    }
+    body.light .browser{box-shadow:0 40px 110px rgba(40,70,140,.16)}
+    .browser-header{
+      height:42px;border-bottom:1px solid var(--line);
+      display:flex;align-items:center;gap:7px;padding:0 18px;
+      background:rgba(150,180,230,.04);
+    }
+    .browser-header b{width:11px;height:11px;border-radius:50%;background:rgba(150,180,230,.18)}
+    .browser-content{position:relative;padding:56px 24px;min-height:620px;display:flex;align-items:center;justify-content:center}
+    #star-canvas2{position:absolute;inset:0;width:100%;height:100%;opacity:.4;pointer-events:none}
+    .ctl{
+      position:absolute;z-index:5;
+      background:var(--glass);border:1px solid var(--glass-brd);border-radius:12px;
+      padding:13px 15px;box-shadow:0 16px 44px rgba(0,0,0,.4);
+      backdrop-filter:blur(10px);
+    }
+    body.light .ctl{box-shadow:0 16px 44px rgba(40,70,140,.14)}
+    .ctl h6{font-size:11.5px;font-weight:500;color:var(--muted);margin-bottom:10px;text-align:left}
+    .swatches{display:flex;gap:8px}
+    .sw{width:25px;height:25px;border-radius:7px;cursor:pointer;border:2px solid transparent;transition:.2s}
+    .sw.on{border-color:#fff;box-shadow:0 0 0 2px rgba(0,0,0,.35)}
+    .radii{display:flex;gap:8px}
+    .rad{width:42px;height:25px;cursor:pointer;background:rgba(150,180,230,.14);border:1px solid var(--line);transition:.2s}
+    .rad:hover,.rad.on{background:rgba(150,180,230,.32);border-color:var(--accent)}
+    .seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+    .seg button{border:none;background:transparent;color:var(--muted);font-size:12px;padding:7px 12px;cursor:pointer;font-family:inherit;transition:.2s}
+    .seg button.on{background:rgba(150,180,230,.16);color:var(--ink)}
+    .logo-picker{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+    .lp{
+      width:52px;height:44px;border-radius:9px;cursor:pointer;
+      background:rgba(150,180,230,.08);border:1px solid var(--line);
+      display:flex;align-items:center;justify-content:center;
+      font-size:17px;color:var(--accent);transition:.2s;
+    }
+    .lp.on{border-color:var(--accent);background:rgba(150,180,230,.16)}
+    /* control positions */
+    .ctl-colors{top:64px;left:6%}
+    .ctl-appearance{top:46%;left:3%}
+    .ctl-radius{bottom:70px;left:9%}
+    .ctl-logos{top:90px;right:5%}
+    .ctl-info{bottom:80px;right:6%;max-width:200px;font-size:12px;color:var(--muted);text-align:left;line-height:1.5}
+    @media(max-width:980px){
+      .ctl{position:static;margin:8px}
+      .browser-content{flex-direction:column;gap:6px;padding:30px 16px}
+      .ctl-info{display:none}
+    }
+
+    /* ===================== services (security-card style) ===================== */
+    .svc-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:980px;margin:0 auto;padding:0 24px}
+    .svc{
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(150,180,230,.05),transparent),var(--bg2);
+      overflow:hidden;transition:.25s;
+    }
+    .svc:hover{border-color:color-mix(in srgb,var(--brand) 45%,transparent)}
+    .svc .svc-anim{
+      height:120px;display:flex;align-items:center;justify-content:center;
+      border-bottom:1px solid var(--line);
+      background:radial-gradient(300px 110px at 50% 0%,rgba(94,143,221,.13),transparent);
+      font-size:34px;color:var(--accent);
+    }
+    .svc .svc-body{padding:20px 22px}
+    .svc h4{font-size:15.5px;font-weight:600;margin-bottom:8px}
+    .svc p{font-size:13.5px;color:var(--muted);line-height:1.65}
+
+    /* ===================== complete (experience) ===================== */
+    .complete-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 auto 44px;max-width:720px;padding:0 24px}
+    .complete-badge{
+      padding:8px 18px;border-radius:999px;font-size:13px;
+      border:1px solid rgba(160,190,255,.22);
+      background:rgba(150,180,230,.07);
+      box-shadow:0 0 16px rgba(120,170,255,.1);
+    }
+    .gcard{
+      background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);
+      padding:26px;transition:.25s;text-align:left;
+    }
+    .gcard:hover{border-color:color-mix(in srgb,var(--brand) 45%,transparent)}
+    .gcard h4{font-size:16px;font-weight:600;margin-bottom:8px}
+    .gcard h5{font-size:12.5px;color:var(--accent2);font-weight:500;margin-bottom:4px}
+    .gcard em{color:var(--muted);font-size:13px}
+    .gcard ul{margin:12px 0 0 18px;color:var(--muted);font-size:13.5px;line-height:1.8}
+    .cards2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+
+    /* ===================== testimonials ===================== */
+    .testimonials-list{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:980px;margin:0 auto;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+    .testimonial{
+      padding:38px 36px;background:var(--bg2);
+      display:flex;flex-direction:column;gap:22px;
+    }
+    .testimonial:first-child{border-right:1px solid var(--line)}
+    .testimonial .t-logo{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .testimonial .t-quote{font-size:15px;line-height:1.7;color:var(--muted)}
+    .testimonial .t-author{display:flex;align-items:center;gap:12px}
+    .testimonial .t-avatar{width:40px;height:40px;border-radius:50%;background:rgba(150,180,230,.15);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;color:var(--accent)}
+    .testimonial .t-name{font-size:13.5px;font-weight:600}
+    .testimonial .t-title{font-size:12.5px;color:var(--muted2)}
+
+    /* ===================== CTA ===================== */
+    .cta-boxes{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:880px;margin:0 auto 38px;padding:0 24px}
+    .cta-box{
+      position:relative;border:1px solid var(--line);border-radius:var(--radius);
+      padding:44px 32px;text-align:center;overflow:hidden;transition:.25s;
+      background:radial-gradient(360px 170px at 50% 0%,rgba(94,143,221,.14),transparent),var(--bg2);
+    }
+    .cta-box:hover{border-color:color-mix(in srgb,var(--brand) 50%,transparent);transform:translateY(-3px)}
+    .cta-box h6{font-size:17px;font-weight:600;margin-bottom:6px}
+    .cta-box p{font-size:13.5px;color:var(--muted)}
+    .cta-box .dots span{position:absolute;width:5px;height:5px;background:#9ecbff;opacity:.7;border-radius:1px}
+    .cta-box .dots span:nth-child(1){top:8px;left:8px}
+    .cta-box .dots span:nth-child(2){top:8px;right:8px}
+    .cta-box .dots span:nth-child(3){bottom:8px;left:8px}
+    .cta-box .dots span:nth-child(4){bottom:8px;right:8px}
+    .cta-actions{display:flex;justify-content:center}
+
+    footer{border-top:1px solid var(--line);padding:34px 24px;text-align:center;color:var(--muted2);font-size:13px;background:var(--bg2)}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.in{opacity:1;transform:none}
+    .reveal.d1{transition-delay:.12s}
+    .reveal.d2{transition-delay:.24s}
+
+    @media(max-width:980px){
+      .card-slot[data-pos="left"],.card-slot[data-pos="right"]{display:none}
+      .card-stage{height:440px}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .testimonials-list{grid-template-columns:1fr}
+      .testimonial:first-child{border-right:none;border-bottom:1px solid var(--line)}
+    }
+    @media(max-width:620px){
+      .grid{grid-template-columns:1fr}
+      .cards2{grid-template-columns:1fr}
+      .svc-cards{grid-template-columns:1fr}
+      .cta-boxes{grid-template-columns:1fr}
+      .hero-topbar{padding:16px 18px}
+      .hero-topbar .brand{display:none}
+    }
+  </style>
 </head>
-
 <body>
 
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BB8W2X"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
-  <div id="scroll-progress"></div>
-
-  <!-- ======= Navbar ======= -->
-  <nav id="navbar">
-    <div class="container">
-      <a class="logo" href="#hero">Ali Hassan</a>
-      <button id="nav-toggle" aria-label="Toggle navigation"><i class="bx bx-menu"></i></button>
-      <ul class="nav-links">
-        <li><a href="#hero" class="active">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Projects</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="https://docs.google.com/document/d/1P2E6kSkN2MoJBh04_WtSb4Br6x7WhR8anHYBOTL9OX8/edit?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
-        <li><a href="#contacts">Contact</a></li>
-      </ul>
+  <!-- ===================== HERO ===================== -->
+  <div class="hero" id="hero">
+    <canvas id="star-canvas"></canvas>
+    <div class="spotlights">
+      <div class="spot" style="--rotate:20deg;--scale:1;--duration:5s"></div>
+      <div class="spot" style="--rotate:0deg;--scale:1.02;--duration:8s"></div>
+      <div class="spot" style="--rotate:-20deg;--scale:1;--duration:4s"></div>
     </div>
-  </nav>
-
-  <!-- ======= Hero ======= -->
-  <header id="hero">
-    <canvas id="particle-canvas" aria-hidden="true"></canvas>
-    <div class="container">
-      <h1>Ali Hassan</h1>
-      <h2>I'm <span class="typing"></span></h2>
-      <p class="tagline">I design, build, and maintain fast, modern websites and web apps — helping businesses look sharp online and run smoothly behind the scenes.</p>
-      <div class="cta-row">
-        <a href="#contacts" class="btn-accent">Work With Me</a>
-        <a href="#portfolio" class="btn-ghost">See My Work</a>
-      </div>
-      <div class="social-links">
-        <a href="https://www.linkedin.com/in/ali-hassan-009813263/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bx bxl-linkedin"></i></a>
-        <a href="https://github.com/Alibedel" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-        <a href="mailto:abdilegend42@gmail.com" aria-label="Email"><i class="bx bx-envelope"></i></a>
-      </div>
+    <div class="lamp-halo"></div>
+    <div class="hero-lines">
+      <div class="hline" style="top:14%;opacity:.75"></div>
+      <div class="hline" style="top:30%"></div>
+      <div class="hline" style="top:46%"></div>
+      <div class="hline" style="top:62%"></div>
+      <div class="hline" style="top:78%"></div>
+      <div class="vline" style="left:12%;opacity:.5"></div>
+      <div class="vline" style="left:30%"></div>
+      <div class="vline" style="left:50%;opacity:.4"></div>
+      <div class="vline" style="left:70%"></div>
+      <div class="vline" style="left:88%;opacity:.5"></div>
+      <div class="cross" style="top:calc(14% - 15px);left:calc(30% - 15px)"></div>
+      <div class="cross" style="top:calc(14% - 15px);left:calc(70% - 15px)"></div>
     </div>
-    <a href="#about" class="scroll-hint" aria-label="Scroll down"><i class="bx bx-chevron-down"></i></a>
-  </header>
 
-  <!-- ======= About ======= -->
-  <section id="about" class="about">
-    <div class="about-me container">
-      <div class="section-title reveal">
-        <h2>About</h2>
-        <p>A developer you can build with</p>
+    <header class="hero-topbar">
+      <span class="brand">Ali Hassan</span>
+      <span class="mark" aria-hidden="true"></span>
+      <div class="right">
+        <a class="gbtn icon-only" href="https://github.com/Alibedel" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 015.8 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+        </a>
+        <a class="gbtn" href="#contacts">Get started</a>
       </div>
-      <div class="row">
-        <div class="col-lg-12 content reveal">
-          <p>I'm a web developer and software engineer based in Detroit. I work with businesses to design, build, and maintain their web presence — from polished marketing sites to custom web applications and database-driven dashboards. My background spans full-stack development with Python, Django, and modern front-end tooling, plus a strong interest in AI and machine learning that I bring into projects where it adds real value.</p>
-          <p>Whether you need a brand-new site, a web app tailored to how your business actually runs, or someone reliable to keep an existing site fast, secure, and up to date — I can help. I care about clean code, clear communication, and shipping work that solves the problem.</p>
-          <div class="row">
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="icofont-rounded-right"></i> <strong>Based in:</strong> Detroit, MI (working with clients anywhere)</li>
-              </ul>
-            </div>
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="icofont-rounded-right"></i> <strong>Email:</strong> <a href="mailto:abdilegend42@gmail.com">abdilegend42@gmail.com</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+    </header>
 
-      <div class="interests">
-        <div class="row">
-          <div class="col-lg-3 col-md-4 col-6 mt-4 reveal"><div class="icon-box"><i class="ri-global-line" style="color: #ffbb2c;"></i><h3>Software Development</h3></div></div>
-          <div class="col-lg-3 col-md-4 col-6 mt-4 reveal reveal-delay-1"><div class="icon-box"><i class="ri-database-2-line" style="color: #5578ff;"></i><h3>Machine Learning</h3></div></div>
-          <div class="col-lg-3 col-md-4 col-6 mt-4 reveal reveal-delay-2"><div class="icon-box"><i class="ri-camera-3-line" style="color: #e80368;"></i><h3>Computer Vision</h3></div></div>
-          <div class="col-lg-3 col-md-4 col-6 mt-4 reveal reveal-delay-3"><div class="icon-box"><i class="ri-english-input" style="color: #34d399;"></i><h3>Natural Language Processing</h3></div></div>
-          <div class="col-lg-3 col-md-4 col-6 mt-4 reveal"><div class="icon-box"><i class="ri-code-s-slash-fill" style="color: #28a745;"></i><h3>Software Engineering</h3></div></div>
-          <div class="col-lg-3 col-md-4 col-6 mt-4 reveal reveal-delay-1"><div class="icon-box"><i class="ri-bar-chart-box-line" style="color: #f1081f;"></i><h3>Visualization</h3></div></div>
-          <div class="col-lg-3 col-md-4 col-6 mt-4 reveal reveal-delay-2"><div class="icon-box"><i class="ri-file-list-3-line" style="color: #47aeff;"></i><h3>Algorithms</h3></div></div>
-          <div class="col-lg-3 col-md-4 col-6 mt-4 reveal reveal-delay-3"><div class="icon-box"><i class="ri-image-line" style="color: #ffc107;"></i><h3>Image Processing</h3></div></div>
-        </div>
-      </div>
+    <div class="introducing"><span class="badge grad-text">Introducing</span></div>
+
+    <div class="obox">
+      <i></i><i></i><i></i><i></i>
+      <h1 class="hero-title" data-text="Ali Hassan">Ali Hassan</h1>
     </div>
-  </section>
-
-  <!-- ======= Services ======= -->
-  <section id="services" class="services">
-    <div class="container">
-      <div class="section-title reveal">
-        <h2>Services</h2>
-        <p>What I can do for your business</p>
-      </div>
-      <div class="row">
-        <div class="col-lg-6 col-md-6 d-flex align-items-stretch reveal">
-          <div class="icon-box w-100">
-            <div class="icon"><i class="bx bx-layout"></i></div>
-            <h4>Website Design &amp; Build</h4>
-            <p>A modern, mobile-friendly website built around your brand and your customers — fast to load, easy to find on Google, and easy for you to update.</p>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6 d-flex align-items-stretch reveal reveal-delay-1">
-          <div class="icon-box w-100">
-            <div class="icon"><i class="bx bx-wrench"></i></div>
-            <h4>Website Maintenance &amp; Support</h4>
-            <p>Ongoing care for your existing site: updates, security, backups, performance tuning, content changes, and quick fixes when something breaks.</p>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4 reveal">
-          <div class="icon-box w-100">
-            <div class="icon"><i class="bx bx-data"></i></div>
-            <h4>Web Apps &amp; Dashboards</h4>
-            <p>Custom tools built for how your business actually runs — inventory systems, customer databases, and reporting dashboards like the one I built for Iconic Tech.</p>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4 reveal reveal-delay-1">
-          <div class="icon-box w-100">
-            <div class="icon"><i class="bx bx-line-chart"></i></div>
-            <h4>SEO &amp; Performance</h4>
-            <p>Make your site faster and more visible: page-speed optimization, on-page SEO, analytics setup, and clear reporting on what's working.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-5">
-        <div class="col-12 text-center reveal">
-          <a href="#contacts" class="btn-accent">Get a Free Quote</a>
-        </div>
-      </div>
+    <div class="obox hero-headline">
+      <i></i><i></i><i></i><i></i>
+      <h2><span class="grad-text">The web developer your business needs,</span><br><span class="grad-text">powered by Python + Django.</span></h2>
     </div>
-  </section>
 
-  <!-- ======= Projects ======= -->
-  <section id="portfolio" class="portfolio">
-    <div class="container">
-      <div class="section-title reveal">
-        <h2>Projects</h2>
-        <p>Selected work — try the live demo</p>
-      </div>
-
-      <div class="row reveal">
-        <div class="col-lg-12 d-flex justify-content-center">
-          <ul class="filters">
-            <li data-filter="all" class="filter-active">All</li>
-            <li data-filter="app">Web Apps</li>
-            <li data-filter="project">Projects</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row portfolio-grid">
-        <div class="col-lg-4 col-md-6 portfolio-item reveal" data-category="app">
-          <h4>Iconic Tech Dashboard</h4>
-          <div class="portfolio-wrap tilt">
-            <img src="assets/img/project/iconictech.jpg" alt="Iconic Tech Dashboard — Django database management web app" loading="lazy">
-            <div class="overlay">
-              <button class="btn-accent open-project" data-src="projects/iconictech.html"><i class="bx bx-info-circle"></i> Case Study</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item reveal reveal-delay-1" data-category="app">
-          <h4>BlackJack Universe</h4>
-          <div class="portfolio-wrap tilt">
-            <img src="assets/img/project/blackJackUniverse.png" alt="BlackJack Universe — browser-based blackjack game" loading="lazy">
-            <div class="overlay">
-              <button class="btn-accent open-project" data-src="projects/blackJackUniverse.html"><i class="bx bx-info-circle"></i> Case Study</button>
-              <a class="btn-ghost" href="#live-demo"><i class="bx bx-joystick"></i> Play It Below</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item reveal reveal-delay-2" data-category="app">
-          <h4>Hoops Nation</h4>
-          <div class="portfolio-wrap tilt">
-            <img src="assets/img/project/hoopsNations.png" alt="Hoops Nation — NBA league tracker web app" loading="lazy">
-            <div class="overlay">
-              <button class="btn-accent open-project" data-src="projects/hoopsNations.html"><i class="bx bx-info-circle"></i> Case Study</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item reveal" data-category="project">
-          <h4>Fitness Genius</h4>
-          <div class="portfolio-wrap tilt">
-            <img src="assets/img/project/fitGenius.png" alt="Fitness Genius — workout and diet tracker" loading="lazy">
-            <div class="overlay">
-              <button class="btn-accent open-project" data-src="projects/fitGenius.html"><i class="bx bx-info-circle"></i> Case Study</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item reveal reveal-delay-1" data-category="project">
-          <h4>Cookify</h4>
-          <div class="portfolio-wrap tilt">
-            <img src="assets/img/project/Cookify.png" alt="Cookify — recipe management app" loading="lazy">
-            <div class="overlay">
-              <button class="btn-accent open-project" data-src="projects/Cookify.html"><i class="bx bx-info-circle"></i> Case Study</button>
+    <div class="card-stage" id="stage">
+      <!-- left: projects -->
+      <div class="card-slot" data-pos="left">
+        <div class="floaty" style="--fd:6.5s;--fx:4px;--fy:7px">
+          <div class="authcard" style="--sd:3s">
+            <div class="card-body">
+              <div class="logo-dot"></div>
+              <h3>Welcome to the portfolio</h3>
+              <p class="desc">Pick a project to open its case study.</p>
+              <a class="btn" href="projects/iconictech.html">Iconic Tech Dashboard</a>
+              <a class="btn" href="projects/blackJackUniverse.html">BlackJack Universe</a>
+              <a class="btn" href="projects/hoopsNations.html">Hoops Nation</a>
+              <a class="btn primary" href="#portfolio">View all projects</a>
+              <div class="foot">Looking for code? <a href="https://github.com/Alibedel" target="_blank" rel="noopener">GitHub</a></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Live demo -->
-      <div id="live-demo" class="demo-card reveal">
-        <div class="demo-head">
-          <h4><i class="bx bx-joystick"></i>BlackJack Universe — Live Demo</h4>
-          <span>Built with vanilla JavaScript. Go ahead, hit 21.</span>
-        </div>
-        <iframe src="projects/blackjack-demo.html" title="Playable BlackJack Universe demo" loading="lazy"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======= Experience ======= -->
-  <section id="experience" class="services">
-    <div class="container">
-      <div class="section-title reveal">
-        <h2>Experience</h2>
-        <p>Where I've shipped</p>
-      </div>
-      <div class="row">
-        <div class="col-lg-12 reveal">
-          <div class="icon-box" style="text-align:left;">
-            <h4><a href="https://www.iconictech.ca/" target="_blank" rel="noopener">Iconic Tech</a></h4>
-            <h5>December 2022 – Present</h5>
-            <p><em>Software Engineer (Freelance)</em></p>
-            <ul>
-              <li>Designed and built a web-based database management system (the Iconic Tech Dashboard) from the ground up, tailored to the needs of a small retail store</li>
-              <li>Created a relational database schema implemented in MySQL</li>
-              <li>Wrote a data access layer in Python to handle all interactions with the database</li>
-              <li>Developed analytical queries: sales trends, popular products and services, and technician efficiency</li>
-              <li>Built a user-friendly web app in Django as the presentation layer for the database</li>
-              <li>Cleaned existing data so beneficial insights could be extracted</li>
-              <li>Authored a data-entry protocol — implemented in the app and as a staff manual — to ensure higher-quality data going forward</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======= Education ======= -->
-  <section id="education" class="services">
-    <div class="container">
-      <div class="section-title reveal">
-        <h2>Education</h2>
-        <p>Where I learned</p>
-      </div>
-      <div class="row">
-        <div class="col-lg-6 reveal">
-          <div class="icon-box" style="padding: 0 0 15px 0; text-align: left;">
-            <img src="assets/img/education/ASU.jpg" class="img-fluid" alt="University of Windsor" loading="lazy">
-            <div style="padding: 10px 16px;">
-              <h4 style="font-size:18px; margin: 8px 0 2px;">University of Windsor</h4>
-              <p style="margin:0;"><em>BCS in Biochemistry</em></p>
-              <h5 style="margin: 6px 0;">May 2018 – December 2022</h5>
-              <h6 style="margin: 10px 0 6px;">Relevant Coursework</h6>
-              <ul style="margin:0;">
-                <li>Structure and function of DNA, RNA, and proteins</li>
-                <li>Analytical techniques: chromatography, electrophoresis, and spectroscopy</li>
-                <li>Principles of inheritance and the structure and function of genes</li>
-              </ul>
+      <!-- center: contact -->
+      <div class="card-slot" data-pos="center">
+        <div class="floaty" style="--fd:8s;--fx:-3px;--fy:5px">
+          <div class="authcard" style="--sd:0s">
+            <div class="card-body">
+              <div class="logo-dot"></div>
+              <h3>Work with Ali</h3>
+              <span class="field-label">Email</span>
+              <input class="field" id="visitor-email" type="email" placeholder="" autocomplete="email">
+              <button class="btn primary" id="start-btn">Start a Project</button>
+              <div class="or-row">OR</div>
+              <a class="btn" href="https://github.com/Alibedel" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 015.8 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+                Continue with GitHub
+              </a>
+              <a class="btn" href="https://www.linkedin.com/in/ali-hassan-009813263/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14.8H.2V8zm7.4 0h4.4v2h.1c.6-1.1 2.1-2.3 4.3-2.3 4.6 0 5.5 3 5.5 7v8.1h-4.6v-7.2c0-1.7 0-3.9-2.4-3.9s-2.8 1.9-2.8 3.8v7.3H7.6V8z"/></svg>
+                Continue with LinkedIn
+              </a>
+              <div class="foot">Don't have a project yet? <a href="#services">Let's talk</a></div>
             </div>
           </div>
         </div>
-        <div class="col-lg-6 reveal reveal-delay-1">
-          <div class="icon-box" style="padding: 0 0 15px 0; text-align: left;">
-            <img src="assets/img/education/GA.png" class="img-fluid" alt="General Assembly" loading="lazy">
-            <div style="padding: 10px 16px;">
-              <h4 style="font-size:18px; margin: 8px 0 2px;">General Assembly</h4>
-              <p style="margin:0;"><em>Software Engineering Immersive</em></p>
-              <h5 style="margin: 6px 0;">August 2022 – February 2023</h5>
-              <h6 style="margin: 10px 0 6px;">Relevant Coursework</h6>
-              <ul style="margin:0;">
-                <li>Database Management Systems</li>
-                <li>World Wide Web Information System Development</li>
-                <li>Object-Oriented Software Analysis &amp; Design</li>
-                <li>Data Structures &amp; Algorithms</li>
-              </ul>
+      </div>
+
+      <!-- right: passcode / resume -->
+      <div class="card-slot" data-pos="right">
+        <div class="floaty" style="--fd:7.5s;--fx:5px;--fy:-5px">
+          <div class="authcard" style="--sd:5s">
+            <div class="card-body">
+              <div class="logo-dot"></div>
+              <h3>Verify it's really Detroit</h3>
+              <p class="desc">Enter the temporary passcode from your authenticator app. (Hint: it's the area code.)</p>
+              <span class="field-label">One time code</span>
+              <div class="code-row" id="code-row">
+                <div class="code-box"></div><div class="code-box"></div><div class="code-box"></div>
+              </div>
+              <a class="btn primary" href="https://docs.google.com/document/d/1P2E6kSkN2MoJBh04_WtSb4Br6x7WhR8anHYBOTL9OX8/edit?usp=sharing" target="_blank" rel="noopener">Open Resume</a>
+              <div class="foot"><a href="#contacts">Return to sign in</a></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ======= Skills ======= -->
-  <section id="skills" class="services">
-    <div class="container">
-      <div class="section-title reveal">
-        <h2>Skills</h2>
-        <p>My toolbox</p>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="icon-box light-card reveal" style="text-align:left;">
-            <h4>Languages and Databases</h4>
-            <p>
-              <img src="https://www.vectorlogo.zone/logos/python/python-horizontal.svg" alt="Python" height="50" width="150" loading="lazy">
-              <img src="https://www.vectorlogo.zone/logos/java/java-horizontal.svg" alt="Java" height="50" width="120" loading="lazy">
-              <img src="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-ar21.svg" alt="HTML5" loading="lazy">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS3" height="60" width="90" loading="lazy">
-              <img src="https://www.vectorlogo.zone/logos/mysql/mysql-horizontal.svg" alt="MySQL" height="70" width="130" loading="lazy">
-              <img src="https://www.vectorlogo.zone/logos/postgresql/postgresql-horizontal.svg" alt="PostgreSQL" height="50" width="190" loading="lazy">
-            </p>
-          </div>
-          <div class="icon-box light-card reveal" style="text-align:left;">
-            <h4>Frameworks</h4>
-            <p>
-              <img src="https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-ar21.svg" alt="Flask" loading="lazy">
-              <img src="https://www.vectorlogo.zone/logos/djangoproject/djangoproject-ar21.svg" alt="Django" loading="lazy">
-              <img src="https://www.vectorlogo.zone/logos/nodejs/nodejs-horizontal.svg" alt="Node.js" loading="lazy">
-              <img src="https://www.vectorlogo.zone/logos/getbootstrap/getbootstrap-ar21.svg" alt="Bootstrap" loading="lazy">
-              <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-ar21.svg" alt="TensorFlow" loading="lazy">
-              <img src="https://www.vectorlogo.zone/logos/pytorch/pytorch-ar21.svg" alt="PyTorch" loading="lazy">
-              <img src="https://www.vectorlogo.zone/logos/opencv/opencv-ar21.svg" alt="OpenCV" loading="lazy">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="scikit-learn" width="90" height="70" loading="lazy">
-            </p>
-          </div>
-          <div class="icon-box light-card reveal" style="text-align:left;">
-            <h4>Tools</h4>
-            <p>
-              <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-ar21.svg" alt="Git" loading="lazy">
-              <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-ar21.svg" alt="AWS" loading="lazy">
-              <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-ar21.svg" alt="Google Cloud" loading="lazy">
-              <img src="https://www.vectorlogo.zone/logos/heroku/heroku-ar21.svg" alt="Heroku" loading="lazy">
-              <img src="https://www.vectorlogo.zone/logos/jupyter/jupyter-ar21.svg" alt="Jupyter" loading="lazy">
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======= Contact ======= -->
-  <section id="contacts" class="contact">
-    <div class="container">
-      <div class="section-title reveal">
-        <h2>Contact</h2>
-        <p>Let's build something</p>
-      </div>
-      <div class="row mt-2">
-        <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch reveal">
-          <div class="info-box">
-            <i class="bx bx-share-alt"></i>
-            <h3>Social Profiles</h3>
-            <div class="social-links">
-              <a href="https://www.linkedin.com/in/ali-hassan-009813263/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bx bxl-linkedin"></i></a>
-              <a href="https://github.com/Alibedel" target="_blank" rel="noopener" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 mt-4 d-flex align-items-stretch reveal reveal-delay-1">
-          <div class="info-box">
-            <i class="bx bx-envelope"></i>
-            <h3>Email</h3>
-            <p><a href="mailto:abdilegend42@gmail.com">abdilegend42@gmail.com</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">Designed &amp; built by Ali Hassan — yes, this site is one of my projects too.</div>
-  </footer>
-
-  <!-- Project modal -->
-  <div id="project-modal" role="dialog" aria-modal="true">
-    <div class="modal-shell">
-      <button class="modal-close" aria-label="Close"><i class="bx bx-x"></i></button>
-      <iframe src="about:blank" title="Project details"></iframe>
+    <div class="light-switch-wrap">
+      <button class="light-switch" id="light-switch" role="switch" aria-checked="false" aria-label="Toggle light mode">
+        <span class="thumb"></span>
+        <svg viewBox="0 0 20 20" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.7 9.8a5.4 5.4 0 0 1-7.5-7.5 7.7 7.7 0 1 0 7.5 7.5Z"/></svg>
+        <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.6" stroke="currentColor" stroke-width="1.5"/><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M10 1.5v1.7M10 16.8v1.7M1.5 10h1.7M16.8 10h1.7M4 4l1.2 1.2M14.8 14.8 16 16M16 4l-1.2 1.2M5.2 14.8 4 16"/></svg>
+      </button>
+      <p class="light-caption">Light and dark modes supported.</p>
     </div>
   </div>
 
-  <!-- JS -->
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/js/site.js"></script>
+  <!-- ===================== features marquee ===================== -->
+  <div class="features-slider reveal">
+    <div class="features-track" id="features-track">
+      <!-- duplicated in JS for seamless loop -->
+      <div class="feature-item"><div class="feature-cell"><div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 6l-5 6 5 6M16 6l5 6-5 6"/></svg></div><span>Software Development</span></div><span class="feature-sep"></span></div>
+      <div class="feature-item"><div class="feature-cell"><div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5v13c0 1.7 3.6 3 8 3s8-1.3 8-3v-13M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><span>Databases</span></div><span class="feature-sep"></span></div>
+      <div class="feature-item"><div class="feature-cell"><div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></div><span>Machine Learning</span></div><span class="feature-sep"></span></div>
+      <div class="feature-item"><div class="feature-cell"><div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.5"/></svg></div><span>Computer Vision</span></div><span class="feature-sep"></span></div>
+      <div class="feature-item"><div class="feature-cell"><div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><span>Natural Language Processing</span></div><span class="feature-sep"></span></div>
+      <div class="feature-item"><div class="feature-cell"><div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></div><span>Visualization</span></div><span class="feature-sep"></span></div>
+      <div class="feature-item"><div class="feature-cell"><div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg></div><span>Web Apps &amp; Dashboards</span></div><span class="feature-sep"></span></div>
+      <div class="feature-item"><div class="feature-cell"><div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></div><span>SEO &amp; Performance</span></div><span class="feature-sep"></span></div>
+    </div>
+  </div>
 
+  <!-- ===================== about (Your users. Your data.) ===================== -->
+  <section id="about">
+    <div class="section-header reveal">
+      <div class="badge-lines"><span class="badge grad-text">Full-stack by design</span></div>
+      <h3 class="section-title"><span>Your&nbsp;site. Your&nbsp;data.</span><span>Maximum flexibility.</span></h3>
+      <p class="section-desc">I design, build, and maintain web presences for businesses — from polished marketing sites to custom web applications and database-driven dashboards, with AI and machine learning where it adds real value.</p>
+    </div>
+    <div class="about-tags reveal">
+      <span class="tag">Development</span><span class="tag">Python</span><span class="tag">Django</span>
+      <span class="tag">Flask</span><span class="tag">Java</span><span class="tag">MySQL</span>
+      <span class="tag">PostgreSQL</span><span class="tag">Node.js</span><span class="tag">TensorFlow</span>
+      <span class="tag">PyTorch</span><span class="tag">OpenCV</span><span class="tag">AWS</span>
+      <span class="tag">Google Cloud</span><span class="tag">Git</span><span class="tag">Dark</span>
+      <span class="tag">Machine Learning</span>
+    </div>
+  </section>
+
+  <div class="page-sep"></div>
+
+  <!-- ===================== projects ===================== -->
+  <section id="portfolio" style="background:var(--bg2)">
+    <div class="section-header reveal">
+      <div class="badge-lines"><span class="badge grad-text">Selected work</span></div>
+      <h3 class="section-title"><span>Projects that shipped.</span></h3>
+      <p class="section-desc">Click any card for the case study.</p>
+    </div>
+    <div class="container">
+      <div class="grid">
+        <a class="proj reveal" href="projects/iconictech.html">
+          <img src="assets/img/project/iconictech.jpg" alt="Iconic Tech Dashboard" loading="lazy">
+          <div class="cap">Iconic Tech Dashboard <span>Django · MySQL</span></div>
+        </a>
+        <a class="proj reveal d1" href="projects/blackJackUniverse.html">
+          <img src="assets/img/project/blackJackUniverse.png" alt="BlackJack Universe" loading="lazy">
+          <div class="cap">BlackJack Universe <span>JavaScript</span></div>
+        </a>
+        <a class="proj reveal d2" href="projects/hoopsNations.html">
+          <img src="assets/img/project/hoopsNations.png" alt="Hoops Nation" loading="lazy">
+          <div class="cap">Hoops Nation <span>Web App</span></div>
+        </a>
+        <a class="proj reveal" href="projects/fitGenius.html">
+          <img src="assets/img/project/fitGenius.png" alt="Fitness Genius" loading="lazy">
+          <div class="cap">Fitness Genius <span>Tracker</span></div>
+        </a>
+        <a class="proj reveal d1" href="projects/Cookify.html">
+          <img src="assets/img/project/Cookify.png" alt="Cookify" loading="lazy">
+          <div class="cap">Cookify <span>Recipes</span></div>
+        </a>
+        <a class="proj cta-card reveal d2" href="#contacts">
+          <b>Your project here</b>
+          <span>Have an idea? Let's design, build, and ship it together.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-sep"></div>
+
+  <!-- ===================== customizer ===================== -->
+  <section class="customui" id="customize">
+    <div class="section-header reveal">
+      <div class="badge-lines"><span class="badge grad-text">Shine bright</span></div>
+      <h3 class="section-title"><span>Your&nbsp;brand. Your&nbsp;style.</span></h3>
+      <p class="section-desc">Every site I build is fully customizable to fit your brand — try it on this one, live.</p>
+    </div>
+
+    <div class="container reveal">
+      <div class="browser">
+        <div class="browser-header"><b></b><b></b><b></b></div>
+        <div class="browser-content">
+          <canvas id="star-canvas2"></canvas>
+
+          <div class="ctl ctl-colors">
+            <h6>Colour</h6>
+            <div class="swatches" id="swatches">
+              <div class="sw" data-c="#E46D4C" style="background:#E46D4C"></div>
+              <div class="sw on" data-c="#663AF3" style="background:#663AF3"></div>
+              <div class="sw" data-c="#027DEA" style="background:#027DEA"></div>
+              <div class="sw" data-c="#269684" style="background:#269684"></div>
+            </div>
+          </div>
+
+          <div class="ctl ctl-appearance">
+            <h6>Preferred appearance</h6>
+            <div class="seg" id="appearance">
+              <button data-mode="system">System</button>
+              <button data-mode="light">Light</button>
+              <button data-mode="dark" class="on">Dark</button>
+            </div>
+          </div>
+
+          <div class="ctl ctl-radius">
+            <h6>Radius</h6>
+            <div class="radii" id="radii">
+              <div class="rad" data-r="4" style="border-radius:2px" title="Sharp"></div>
+              <div class="rad on" data-r="12" style="border-radius:7px" title="Default"></div>
+              <div class="rad" data-r="22" style="border-radius:12px" title="Round"></div>
+              <div class="rad" data-r="32" style="border-radius:999px" title="Pill"></div>
+            </div>
+          </div>
+
+          <div class="ctl ctl-logos">
+            <h6>Logo icon</h6>
+            <div class="logo-picker" id="logo-picker">
+              <div class="lp on" data-l="◈">◈</div>
+              <div class="lp" data-l="◎">◎</div>
+              <div class="lp" data-l="✦">✦</div>
+              <div class="lp" data-l="▲">▲</div>
+            </div>
+          </div>
+
+          <div class="ctl ctl-info">
+            Colour, radius and appearance apply to this whole page — your visitors' choice is even remembered.
+          </div>
+
+          <!-- preview card -->
+          <div class="authcard" id="preview-card" style="--sd:2s">
+            <div class="logo-dot" id="preview-logo" style="background:rgba(150,180,230,.12);display:flex;align-items:center;justify-content:center;font-size:19px;color:var(--accent)">◈</div>
+            <h3>Sign in to YourBusiness</h3>
+            <span class="field-label">Email</span>
+            <input class="field" type="email" placeholder="Your email address">
+            <span class="field-label">Password</span>
+            <input class="field" type="password" placeholder="Enter your password">
+            <button class="btn primary" onclick="document.getElementById('contacts').scrollIntoView({behavior:'smooth'})">Continue</button>
+            <div class="or-row">OR</div>
+            <a class="btn" href="#contacts">Continue with a free quote</a>
+            <div class="foot">Want a site like this? <a href="mailto:abdilegend42@gmail.com">Sign up</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-sep"></div>
+
+  <!-- ===================== services ===================== -->
+  <section id="services">
+    <div class="section-header reveal">
+      <div class="badge-lines"><span class="badge grad-text">Built for business</span></div>
+      <h3 class="section-title"><span>Designed for people.</span><span>Built for your business.</span></h3>
+      <p class="section-desc">Four ways I can help your business look sharp online and run smoothly behind the scenes.</p>
+    </div>
+    <div class="svc-cards">
+      <div class="svc reveal">
+        <div class="svc-anim">▦</div>
+        <div class="svc-body">
+          <h4>Website Design &amp; Build</h4>
+          <p>A modern, mobile-friendly website built around your brand and your customers — fast to load, easy to find on Google, and easy for you to update.</p>
+        </div>
+      </div>
+      <div class="svc reveal d1">
+        <div class="svc-anim">⚙</div>
+        <div class="svc-body">
+          <h4>Website Maintenance &amp; Support</h4>
+          <p>Ongoing care for your existing site: updates, security, backups, performance tuning, content changes, and quick fixes when something breaks.</p>
+        </div>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-anim">▤</div>
+        <div class="svc-body">
+          <h4>Web Apps &amp; Dashboards</h4>
+          <p>Custom tools built for how your business actually runs — inventory systems, customer databases, and reporting dashboards like the one I built for Iconic Tech.</p>
+        </div>
+      </div>
+      <div class="svc reveal d1">
+        <div class="svc-anim">↗</div>
+        <div class="svc-body">
+          <h4>SEO &amp; Performance</h4>
+          <p>Make your site faster and more visible: page-speed optimization, on-page SEO, analytics setup, and clear reporting on what's working.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-sep"></div>
+
+  <!-- ===================== experience + education ===================== -->
+  <section id="experience" style="background:var(--bg2)">
+    <div class="section-header reveal">
+      <div class="badge-lines"><span class="badge grad-text">Future-proof your app</span></div>
+      <h3 class="section-title"><span>One developer,</span><span>for years of growth.</span></h3>
+      <p class="section-desc">From schema design to the pixel on screen — experience across the whole stack.</p>
+    </div>
+    <div class="complete-badges reveal">
+      <span class="complete-badge">Websites</span>
+      <span class="complete-badge">Web Apps</span>
+      <span class="complete-badge">Databases</span>
+      <span class="complete-badge">Dashboards</span>
+      <span class="complete-badge">Maintenance</span>
+    </div>
+    <div class="container">
+      <div class="gcard reveal">
+        <h5>December 2022 – Present</h5>
+        <h4><a href="https://www.iconictech.ca/" target="_blank" rel="noopener" style="color:var(--accent)">Iconic Tech</a> — Software Engineer (Freelance)</h4>
+        <ul>
+          <li>Designed and built a web-based database management system (the Iconic Tech Dashboard) from the ground up, tailored to a small retail store</li>
+          <li>Created a relational database schema implemented in MySQL with a Python data access layer</li>
+          <li>Developed analytical queries: sales trends, popular products and services, technician efficiency</li>
+          <li>Built a user-friendly Django web app as the presentation layer, cleaned existing data, and authored a data-entry protocol to keep data quality high</li>
+        </ul>
+      </div>
+      <div style="height:18px"></div>
+      <div class="cards2">
+        <div class="gcard reveal">
+          <h5>May 2018 – December 2022</h5>
+          <h4>University of Windsor</h4>
+          <em>BCS in Biochemistry</em>
+          <ul>
+            <li>Structure and function of DNA, RNA, and proteins</li>
+            <li>Analytical techniques: chromatography, electrophoresis, spectroscopy</li>
+            <li>Principles of inheritance and gene structure &amp; function</li>
+          </ul>
+        </div>
+        <div class="gcard reveal d1">
+          <h5>August 2022 – February 2023</h5>
+          <h4>General Assembly</h4>
+          <em>Software Engineering Immersive</em>
+          <ul>
+            <li>Database Management Systems</li>
+            <li>Web Information System Development</li>
+            <li>Object-Oriented Software Analysis &amp; Design</li>
+            <li>Data Structures &amp; Algorithms</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-sep"></div>
+
+  <!-- ===================== testimonials ===================== -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="testimonials-list reveal">
+        <div class="testimonial">
+          <div class="t-logo grad-text">Iconic Tech</div>
+          <div class="t-quote">Ali built our dashboard from the ground up — from the database schema to the screens our staff use every day. Sales trends and product insights we never had before are now one click away.</div>
+          <div class="t-author">
+            <div class="t-avatar">IT</div>
+            <div>
+              <div class="t-name">Iconic Tech</div>
+              <div class="t-title">Retail · Windsor, ON</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="t-logo grad-text">Your business</div>
+          <div class="t-quote">This spot is reserved for your project. Whether it's a brand-new site, a custom web app, or rescuing an existing one — let's make something worth quoting.</div>
+          <div class="t-author">
+            <div class="t-avatar">?</div>
+            <div>
+              <div class="t-name">You</div>
+              <div class="t-title">Future client</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section id="contacts" style="background:radial-gradient(700px 360px at 50% 100%,rgba(94,143,221,.14),transparent),var(--bg2)">
+    <div class="section-header reveal">
+      <div class="badge-lines"><span class="badge grad-text">Contact</span></div>
+      <h3 class="section-title"><span>Start building today</span></h3>
+    </div>
+    <div class="cta-boxes reveal">
+      <a class="cta-box" href="mailto:abdilegend42@gmail.com">
+        <span class="dots"><span></span><span></span><span></span><span></span></span>
+        <h6>Email Ali</h6>
+        <p>The fastest way to launch — abdilegend42@gmail.com</p>
+      </a>
+      <a class="cta-box" href="https://github.com/Alibedel" target="_blank" rel="noopener">
+        <span class="dots"><span></span><span></span><span></span><span></span></span>
+        <h6>View code on GitHub</h6>
+        <p>See how the work gets built.</p>
+      </a>
+    </div>
+    <div class="cta-actions reveal">
+      <a class="gbtn" href="https://www.linkedin.com/in/ali-hassan-009813263/" target="_blank" rel="noopener">Connect on LinkedIn
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14.8H.2V8zm7.4 0h4.4v2h.1c.6-1.1 2.1-2.3 4.3-2.3 4.6 0 5.5 3 5.5 7v8.1h-4.6v-7.2c0-1.7 0-3.9-2.4-3.9s-2.8 1.9-2.8 3.8v7.3H7.6V8z"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer>Designed &amp; built by Ali Hassan — Detroit, MI. Yes, this site is one of my projects too.</footer>
+
+  <script>
+  (function(){
+    /* ===== starfield canvases ===== */
+    function starfield(canvas){
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let stars = [];
+      function resize(){
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        stars = Array.from({length: Math.floor(canvas.width * canvas.height / 9000)}, () => ({
+          x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+          r: Math.random()*1.3 + .3, p: Math.random()*Math.PI*2, s: Math.random()*.025 + .008
+        }));
+      }
+      resize();
+      window.addEventListener('resize', resize);
+      (function draw(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        const light = document.body.classList.contains('light');
+        for (const st of stars){
+          st.p += st.s;
+          ctx.globalAlpha = .15 + Math.abs(Math.sin(st.p)) * .6;
+          ctx.fillStyle = light ? '#7c98c8' : '#cfe2ff';
+          ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 7); ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      })();
+    }
+    starfield(document.getElementById('star-canvas'));
+    starfield(document.getElementById('star-canvas2'));
+
+    /* ===== mouse parallax on hero ===== */
+    const hero = document.getElementById('hero');
+    const stage = document.getElementById('stage');
+    hero.addEventListener('mousemove', e => {
+      const r = hero.getBoundingClientRect();
+      const dx = (e.clientX - r.left)/r.width - .5;
+      const dy = (e.clientY - r.top)/r.height - .5;
+      stage.style.transform = `translate(${dx*-12}px, ${dy*-7}px)`;
+    });
+    hero.addEventListener('mouseleave', () => stage.style.transform = '');
+
+    /* ===== card carousel (click side card to center) ===== */
+    const slots = [...stage.querySelectorAll('.card-slot')];
+    let rotateTimer;
+    function bringCenter(slot){
+      const cur = slots.find(s => s.dataset.pos === 'center');
+      if (slot === cur) return;
+      const p = slot.dataset.pos;
+      slot.dataset.pos = 'center';
+      cur.dataset.pos = p;
+    }
+    slots.forEach(s => s.addEventListener('click', () => {
+      if (s.dataset.pos !== 'center'){ bringCenter(s); restartAuto(); }
+    }));
+    function rotate(){
+      const m = {left:'center', center:'right', right:'left'};
+      slots.forEach(s => s.dataset.pos = m[s.dataset.pos]);
+    }
+    function restartAuto(){ clearInterval(rotateTimer); rotateTimer = setInterval(rotate, 8000); }
+    stage.addEventListener('mouseenter', () => clearInterval(rotateTimer));
+    stage.addEventListener('mouseleave', restartAuto);
+    restartAuto();
+
+    /* ===== typing animation ===== */
+    const emailInput = document.getElementById('visitor-email');
+    const demo = 'you@yourbusiness.com';
+    let ti = 0, typing = true, userTyped = false;
+    emailInput.addEventListener('input', () => userTyped = true);
+    setInterval(() => {
+      if (userTyped || document.activeElement === emailInput) return;
+      if (typing){ ti++; if (ti > demo.length + 14) typing = false; }
+      else { ti -= 2; if (ti <= 0){ ti = 0; typing = true; } }
+      emailInput.placeholder = demo.slice(0, Math.min(ti, demo.length));
+    }, 110);
+    document.getElementById('start-btn').addEventListener('click', () => {
+      const v = emailInput.value.trim();
+      const body = v ? encodeURIComponent(`Hi Ali, reach me at ${v} — I'd like to talk about a project.`) : '';
+      location.href = 'mailto:abdilegend42@gmail.com?subject=' + encodeURIComponent('New project inquiry') + (body ? '&body=' + body : '');
+    });
+
+    /* ===== passcode 313 ===== */
+    const boxes = [...document.querySelectorAll('#code-row .code-box')];
+    const code = ['3','1','3'];
+    let step = 0;
+    setInterval(() => {
+      if (step < 3){ boxes[step].textContent = code[step]; boxes[step].classList.add('fill'); step++; }
+      else if (step === 6){ boxes.forEach(b => {b.textContent=''; b.classList.remove('fill');}); step = 0; }
+      else step++;
+    }, 700);
+
+    /* ===== marquee: duplicate content for seamless loop ===== */
+    const track = document.getElementById('features-track');
+    track.innerHTML += track.innerHTML;
+
+    /* ===== theme: light switch + appearance ===== */
+    const lightSwitch = document.getElementById('light-switch');
+    const appearance = document.getElementById('appearance');
+    const mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : {matches:false, addEventListener(){}};
+    function setMode(mode, save){
+      const effective = mode === 'system' ? (mq.matches ? 'light' : 'dark') : mode;
+      document.body.classList.toggle('light', effective === 'light');
+      lightSwitch.setAttribute('aria-checked', effective === 'light');
+      appearance.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.mode === mode));
+      if (save) try{ localStorage.setItem('ali-mode', mode); }catch(e){}
+    }
+    lightSwitch.addEventListener('click', () => {
+      setMode(document.body.classList.contains('light') ? 'dark' : 'light', true);
+    });
+    appearance.addEventListener('click', e => {
+      const b = e.target.closest('button'); if (b) setMode(b.dataset.mode, true);
+    });
+    mq.addEventListener && mq.addEventListener('change', () => {
+      let s = null; try{ s = localStorage.getItem('ali-mode'); }catch(e){}
+      if (s === 'system') setMode('system', false);
+    });
+    let savedMode = null; try{ savedMode = localStorage.getItem('ali-mode'); }catch(e){}
+    setMode(savedMode || 'dark', false);
+
+    /* ===== brand colour ===== */
+    const swatches = document.getElementById('swatches');
+    function setBrand(c, save){
+      document.documentElement.style.setProperty('--brand', c);
+      swatches.querySelectorAll('.sw').forEach(s => s.classList.toggle('on', s.dataset.c === c));
+      if (save) try{ localStorage.setItem('ali-brand', c); }catch(e){}
+    }
+    swatches.addEventListener('click', e => {
+      const s = e.target.closest('.sw'); if (s) setBrand(s.dataset.c, true);
+    });
+    let savedBrand = null; try{ savedBrand = localStorage.getItem('ali-brand'); }catch(e){}
+    if (savedBrand) setBrand(savedBrand, false);
+
+    /* ===== radius ===== */
+    const radii = document.getElementById('radii');
+    function setRadius(r, save){
+      document.documentElement.style.setProperty('--radius', r + 'px');
+      document.documentElement.style.setProperty('--radius-ui', Math.max(4, Math.round(r * .7)) + 'px');
+      radii.querySelectorAll('.rad').forEach(x => x.classList.toggle('on', x.dataset.r === String(r)));
+      if (save) try{ localStorage.setItem('ali-radius', r); }catch(e){}
+    }
+    radii.addEventListener('click', e => {
+      const x = e.target.closest('.rad'); if (x) setRadius(+x.dataset.r, true);
+    });
+    let savedR = null; try{ savedR = localStorage.getItem('ali-radius'); }catch(e){}
+    if (savedR) setRadius(+savedR, false);
+
+    /* ===== logo picker ===== */
+    const logoPicker = document.getElementById('logo-picker');
+    const previewLogo = document.getElementById('preview-logo');
+    logoPicker.addEventListener('click', e => {
+      const l = e.target.closest('.lp'); if (!l) return;
+      previewLogo.textContent = l.dataset.l;
+      logoPicker.querySelectorAll('.lp').forEach(x => x.classList.toggle('on', x === l));
+    });
+
+    /* ===== scroll reveal ===== */
+    if ('IntersectionObserver' in window){
+      const io = new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      }), {threshold:.12});
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    }
+  })();
+  </script>
 </body>
-
 </html>
